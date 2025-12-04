@@ -601,7 +601,6 @@ Ready to make your semantic HTML accessible to everyone? Continue to [Module 02:
 ---
 
 ### Additional Resources
-
 - [MDN: HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 - [MDN: Document and website structure](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure)
 - [HTML5 Outliner Tool](https://gsnedders.html5.org/outliner/) - Test your document structure 
