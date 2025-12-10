@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>DevJobs - Empleos</title>
+    <meta name="description" content="Encuentra el trabajo de tus sueños en DevJobs">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="../styles.css">
+    <script type="module" src="../main.js"></script>
+    <script type="module">
+
+        import React from "https://esm.sh/react?dev";
+        import ReactDOM from "https://esm.sh/react-dom/client?dev";
+
+        window.React = React;
+        window.ReactDOM = ReactDOM;
+
+    </script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel" data-presets="react">
+
+        const { useState } = React;
+
+        // Elemento React
+        const titulo = <h1 style={{ color: "red" }}>React JS - Primeros pasos</h1>;
+
+        // Componente React
+        function Titulo({ color, children }) {
+            return <h1 style={{ color: color }}>{children}</h1>;
+        }
+
+        function JobCard({ data, title, company, location, description }) {
+
+            const [isApplied, setIsApplied] = useState(false);
+
+            function handleApply(e) {
+                e.preventDefault();
+                console.log("Aplicar");
+                setIsApplied(true);
+            }
+
+            const buttonText = isApplied ? "Aplicado" : "Aplicar";
+            const buttonClassName = isApplied ? "button-apply-job is-applied" : "button-apply-job";
+            const isAppliedText = isApplied ? "Aplicado" : "Aplicar";
+
+
+            return (
+                <article className="job-listing-card">
+                    <div>
+                        <h3>{title}</h3>
+                        <small>{company} | {location} | {isAppliedText}</small>
+                        <p>{description}</p>
+                    </div>
+                    <button 
+                        className={buttonClassName} 
+                        onClick={handleApply}
+                        disabled={isApplied}
+                    >
+                        {buttonText}
+                    </button>
+                </article>
+            );
+        }
+
+        function App() {
+            return (
+                <div>
+                    <Titulo color="red">React JS - Primeros pasos</Titulo>
+                    <JobCard data={{ modalidad: "remoto", nivel: "senior", technology: "react, node, javascript" }} title="Desarrollador de Software" company="Tech Solutions Inc." location="Remoto" description="Buscamos un ingeniero de software con experiencia en desarrollo web y conocimientos en JavaScript, React y Node.js. El candidato ideal debe ser capaz de trabajar en equipo y tener buenas habilidades de comunicación." />
+                    <JobCard data={{ modalidad: "cdmx", nivel: "junior", technology: "python" }} title="Analista de Datos" company="Data Driven Co." location="Ciudad de México" description="Estamos buscando un analista de datos con experiencia en el manejo de grandes conjuntos de datos y herramientas de visualización. Se requiere conocimiento en SQL, Python y R." />
+                    <JobCard data={{ modalidad: "guadalajara", nivel: "mid-level", technology: "mobile" }} title="Desarrollador de Aplicaciones Móviles" company="Mobile Apps Ltd." location="Guadalajara" description="Buscamos un desarrollador de aplicaciones móviles con experiencia en iOS y/o Android. El candidato debe tener conocimientos en Swift, Kotlin y el desarrollo de interfaces de usuario." />
+                    <JobCard data={{ modalidad: "remoto", nivel: "mid-level", technology: "aws, azure, gcp" }} title="Ingeniero de DevOps" company="Cloud Services SA." location="Remoto" description="Estamos buscando un ingeniero de DevOps con experiencia en la gestión de infraestructuras en la nube, automatización de procesos y herramientas de integración continua. Se requiere conocimiento en AWS, Azure o GCP." />
+                    <JobCard data={{ modalidad: "barcelona", nivel: "mid-level", technology: "figma" }} title="Diseñador UX/UI" company="Creative Minds Studio." location="Barcelona" description="Estamos buscando un diseñador UX/UI con pasión por crear experiencias digitales excepcionales. Se requiere experiencia en Figma, diseño centrado en el usuario y colaboración con equipos de desarrollo." />
+                    <JobCard data={{ modalidad: "bsas", nivel: "mid-level", technology: "postgresql, mysql" }} title="Administrador de Bases de Datos" company="Secure Data Corp." location="Buenos Aires" description="Se busca un administrador de bases de datos con experiencia en PostgreSQL y MySQL. El candidato deberá asegurar la disponibilidad, seguridad y rendimiento de las bases de datos de producción." />
+                    <JobCard data={{ modalidad: "remoto", nivel: "mid-level", technology: "ciberseguridad" }} title="Especialista en Ciberseguridad" company="SafeNet Solutions." location="Remoto" description="Buscamos un especialista en ciberseguridad con conocimientos en protección de infraestructuras, análisis de vulnerabilidades y respuesta ante incidentes. Se valorará experiencia con SIEM y certificaciones de seguridad." />
+                    <JobCard data={{ modalidad: "madrid", nivel: "senior", technology: "product-manager" }} title="Product Manager" company="NextGen Technologies." location="Madrid" description="Estamos buscando un Product Manager con experiencia en la definición y lanzamiento de productos digitales. Se requiere capacidad analítica, liderazgo y conocimiento en metodologías ágiles." />
+                    <JobCard data={{ modalidad: "valencia", nivel: "mid-level", technology: "react, typescript, tailwind" }} title="Frontend Developer" company="Bright Web Studio." location="Valencia" description="Buscamos un desarrollador frontend con experiencia en React, TypeScript y Tailwind CSS. Se valorará conocimiento en optimización de rendimiento y accesibilidad web." />
+                    <JobCard data={{ modalidad: "bogota", nivel: "mid", technology: "node" }} title="Backend Developer" company="APIWorks." location="Bogotá" description="Estamos buscando un desarrollador backend con experiencia en Node.js, Express y bases de datos NoSQL. Se requiere conocimiento en arquitectura de microservicios." />
+                </div>
+            );
+        }
+
+        const rootEl = document.getElementById("root");
+        const root = ReactDOM.createRoot(rootEl);
+        root.render(<App />);
+        
+        
+    </script>
+</head>
+<body>
+    <header>
+        <h1>
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            DevJobs
+        </h1>
+        <nav>
+            <a href="../index.html">Inicio</a>
+            <a href="./empleos.html">Empleos</a>
+        </nav>
+
+        <div>
+            <a href="#">Publicar Empleo</a>
+            <a href="#">Iniciar Sesión</a>
+        </div>
+    </header>
+    <main id="main-jobs">
+        <section class="jobs-search">
+
+        </section>
+
+        <section class="jobs-listings">
+            <div id="root"></div>
+        </section>
+    </main>
+    <footer>
+        <small>DevJobs - Todos los derechos reservados</small>
+    </footer>
+</body>
+</html>
